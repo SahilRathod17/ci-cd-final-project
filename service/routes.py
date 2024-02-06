@@ -55,14 +55,13 @@ def create_counters(name):
     if name in COUNTER:
         return (
             abort(
-            status.HTTP_409_CONFLICT,
-            f"Counter {name} already exists"
+                status.HTTP_409_CONFLICT,
+                f"Counter {name} already exists"
             )
         )
 
 
     COUNTER[name] = 0
-
     location_url = url_for("read_counters", name=name, _external=True)
     return (
         jsonify(name=name, counter=0),
@@ -77,7 +76,12 @@ def read_counters(name):
     app.logger.info("Request to Read counter: %s...", name)
 
     if name not in COUNTER:
-        return abort(status.HTTP_404_NOT_FOUND, f"Counter {name} does not exist")
+        return (
+            abort(
+                status.HTTP_404_NOT_FOUND, 
+                f"Counter {name} does not exist"
+                )
+        )
 
     counter = COUNTER[name]
     return jsonify(
