@@ -62,6 +62,7 @@ def create_counters(name):
         {"Location": location_url}
     )
 
+
 @app.route("/counters/<name>", methods=["GET"])
 def read_counters(name):
     """Reads a single counter"""
@@ -85,7 +86,6 @@ def update_counters(name):
 
     counter = COUNTER[name]
     return jsonify(name=name, counter=counter)
-
 
 
 ############################################################
