@@ -45,9 +45,6 @@ def list_counters():
     return jsonify(counters)
 
 
-############################################################
-# Create counters
-############################################################
 @app.route("/counters/<name>", methods=["POST"])
 def create_counters(name):
     """Creates a new counter"""
@@ -62,13 +59,9 @@ def create_counters(name):
     return (
         jsonify(name=name, counter=0),
         status.HTTP_201_CREATED,
-        {"Location": location_url},
+        {"Location": location_url}
     )
 
-
-############################################################
-# Read counters
-############################################################
 @app.route("/counters/<name>", methods=["GET"])
 def read_counters(name):
     """Reads a single counter"""
@@ -80,10 +73,6 @@ def read_counters(name):
     counter = COUNTER[name]
     return jsonify(name=name, counter=counter)
 
-
-############################################################
-# Update counters
-############################################################
 @app.route("/counters/<name>", methods=["PUT"])
 def update_counters(name):
     """Updates a counter"""
@@ -96,6 +85,7 @@ def update_counters(name):
 
     counter = COUNTER[name]
     return jsonify(name=name, counter=counter)
+
 
 
 ############################################################
